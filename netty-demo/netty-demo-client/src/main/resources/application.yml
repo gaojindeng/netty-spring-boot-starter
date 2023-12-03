@@ -1,0 +1,44 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: netty-demo-client
+
+netty:
+  client:
+    port: 8001
+    host: 127.0.0.1
+    ioThreads: 5
+    keepConn: true
+    maxConn: 10
+    readerIdleSeconds: 0
+    writerIdleSeconds: 0
+    allIdleSeconds: 5
+    sharableHandlers:
+      - className: io.github.gaojindeng.netty.demo.echo.HeartbeatClientChannel
+      - className: io.netty.handler.codec.string.StringEncoder
+      - className: io.netty.handler.codec.string.StringDecoder
+    configs:
+      client1:
+        port: 8002
+        host: 127.0.0.1
+        ioThreads: 5
+        keepConn: true
+        maxConn: 10
+        sharableHandlers:
+          - className: io.netty.handler.codec.serialization.ObjectEncoder
+        noSharableHandlers:
+          - className: io.github.gaojindeng.netty.demo.channel.MyObjectDecoder
+      client2:
+        port: 8003
+        host: 127.0.0.1
+        ioThreads: 5
+        keepConn: true
+        maxConn: 10
+        noSharableHandlers:
+          - className: io.netty.handler.codec.http.HttpClientCodec
+          - className: io.netty.handler.codec.http.HttpObjectAggregator
+            params:
+              - className: int
+                value: 65536
