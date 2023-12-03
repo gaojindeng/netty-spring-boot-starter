@@ -16,7 +16,7 @@ netty:
     writerIdleSeconds: 0
     allIdleSeconds: 5
     sharableHandlers:
-      - className: io.github.gaojindeng.netty.demo.echo.HeartbeatClientChannel
+      - className: io.github.gaojindeng.netty.demo.client.echo.HeartbeatClientChannel
       - className: io.netty.handler.codec.string.StringEncoder
       - className: io.netty.handler.codec.string.StringDecoder
     configs:
@@ -29,7 +29,7 @@ netty:
         sharableHandlers:
           - className: io.netty.handler.codec.serialization.ObjectEncoder
         noSharableHandlers:
-          - className: io.github.gaojindeng.netty.demo.channel.MyObjectDecoder
+          - className: io.github.gaojindeng.netty.demo.client.channel.MyObjectDecoder
       client2:
         port: 8003
         host: 127.0.0.1
