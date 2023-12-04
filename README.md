@@ -64,7 +64,7 @@ netty.client.configs.client_1.host=127.0.0.1
 > **字符串+定长报文拆拆包粘包通道处理器**
 
 服务端：
-```properties
+```yaml
 netty:
   server:
     port: 8001
@@ -95,7 +95,7 @@ public class DefaultNettyServerListener implements NettyServerReplyListener<Stri
 }
 ```
 客户端：
-```properties
+```yaml
 netty:
   client:
     port: 8001
@@ -117,7 +117,7 @@ String response = nettyClientTemplate.sendAndReceive(request);
 > **java对象拆包粘包通道处理器**
 
 **服**务端：
-```properties
+```yaml
 netty:
   server:
     configs:
@@ -154,7 +154,7 @@ public class NettyServerReplay1Listener implements NettyServerReplyListener<Mess
 }
 ```
 **客户端：**
-```properties
+```yaml
 netty:
   client:
     configs:
@@ -179,7 +179,7 @@ MessageDemoResponseDTO response = nettyClientTemplate1.sendAndReceive(new Messag
 > **http通道处理器**
 
 **服**务端：
-```properties
+```yaml
 netty:
   server:
     configs:
@@ -214,7 +214,7 @@ public class NettyServerReplay2Listener implements NettyServerReplyListener<Full
     }
 ```
 **客户端：**
-```properties
+```yaml
 netty:
   client:
     configs:
@@ -235,18 +235,18 @@ private NettyClientTemplate nettyClientTemplate2;
 
 
 // 构建HTTP请求
-String requestBody = "message";
-HttpRequest request = new DefaultFullHttpRequest(
+        String requestBody = "message";
+        HttpRequest request = new DefaultFullHttpRequest(
         HttpVersion.HTTP_1_1, HttpMethod.POST, "/",
         Unpooled.copiedBuffer(requestBody, CharsetUtil.UTF_8));
 
-request.headers().set(HttpHeaderNames.HOST, "localhost");
-request.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.CLOSE);
-request.headers().set(HttpHeaderNames.CONTENT_LENGTH, ((DefaultFullHttpRequest) request).content().readableBytes());
+        request.headers().set(HttpHeaderNames.HOST, "localhost");
+        request.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.CLOSE);
+        request.headers().set(HttpHeaderNames.CONTENT_LENGTH, ((DefaultFullHttpRequest) request).content().readableBytes());
 
 
-FullHttpResponse o = nettyClientTemplate2.sendAndReceive(request);
-return o.content().toString(CharsetUtil.UTF_8);
+        FullHttpResponse o = nettyClientTemplate2.sendAndReceive(request);
+        return o.content().toString(CharsetUtil.UTF_8);
 ```
 
 > 如果需要添加心跳功能，则需要添加自定义的心跳处理器，重写userEventTriggered方法，然后添加到配置文件中。
