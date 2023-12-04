@@ -3,6 +3,7 @@ package io.github.gaojindeng.netty;
 import io.github.gaojindeng.netty.annotation.NettyClient;
 import io.github.gaojindeng.netty.annotation.NettyMessageListener;
 import io.github.gaojindeng.netty.client.NettyClientTemplate;
+import io.github.gaojindeng.netty.client.NettyClientTemplateImpl;
 import io.github.gaojindeng.netty.convert.RequestMessageConverter;
 import io.github.gaojindeng.netty.convert.ResponseMessageConverter;
 import io.github.gaojindeng.netty.listener.NettyServerListener;
@@ -65,7 +66,7 @@ public class NettyServerConfiguration implements ApplicationContextAware, SmartI
                         ((AbstractNetty) nettyClient).setResponseMessageConverter(resConverter);
                     }
 
-                    field.set(bean, new NettyClientTemplate(nettyClient));
+                    field.set(bean, new NettyClientTemplateImpl(nettyClient));
                 } catch (IllegalAccessException ignore) {
                 }
             }

@@ -3,6 +3,7 @@ package io.github.gaojindeng.netty.demo.server.server;
 import io.github.gaojindeng.netty.annotation.NettyMessageListener;
 import io.github.gaojindeng.netty.listener.NettyServerReplyListener;
 import io.netty.handler.codec.http.*;
+import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,7 @@ public class NettyServerReplay2Listener implements NettyServerReplyListener<Full
 
     @Override
     public DefaultFullHttpResponse onMessage(FullHttpRequest message) {
-        log.info("server_2-message: {}", message);
+        log.info("server_2-message: {}", message.content().toString(CharsetUtil.UTF_8));
         // 构造 HTTP 响应
         DefaultFullHttpResponse response = new DefaultFullHttpResponse(
                 HttpVersion.HTTP_1_1, HttpResponseStatus.OK);

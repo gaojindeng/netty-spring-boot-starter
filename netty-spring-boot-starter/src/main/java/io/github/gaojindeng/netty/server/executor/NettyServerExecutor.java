@@ -17,7 +17,7 @@ public class NettyServerExecutor {
         TaskQueue taskQueue = new TaskQueue();
         threadPoolExecutor = new ThreadPoolExecutor(
                 corePoolSize + 1, maximumPoolSize + 1, 60, TimeUnit.SECONDS,
-                taskQueue, new CustomThreadFactory("tcp-listener"), new ThreadPoolExecutor.AbortPolicy());
+                taskQueue, new CustomThreadFactory("netty-listener"), new ThreadPoolExecutor.AbortPolicy());
         taskQueue.setExecutor(threadPoolExecutor);
     }
 
