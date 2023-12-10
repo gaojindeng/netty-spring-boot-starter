@@ -25,12 +25,13 @@ public class NettyServer extends AbstractNettyServer {
 
     public NettyServer(NettyServerConfig nettyServerConfig) {
         super(nettyServerConfig);
-        this.nettyServerExecutor = new NettyServerExecutor(nettyServerConfig.getCorePoolSize(), nettyServerConfig.getMaxPoolSize());
+        this.nettyServerExecutor = new NettyServerExecutor(getName(), nettyServerConfig.getCorePoolSize(), nettyServerConfig.getMaxPoolSize());
     }
 
     public NettyServer(String name, NettyServerConfig nettyServerConfig) {
-        this(nettyServerConfig);
+        super(nettyServerConfig);
         super.setName(name);
+        this.nettyServerExecutor = new NettyServerExecutor(name, nettyServerConfig.getCorePoolSize(), nettyServerConfig.getMaxPoolSize());
     }
 
 

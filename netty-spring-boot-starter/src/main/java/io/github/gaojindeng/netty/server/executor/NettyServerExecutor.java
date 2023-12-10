@@ -12,12 +12,12 @@ public class NettyServerExecutor {
 
     private final ThreadPoolExecutor threadPoolExecutor;
 
-    public NettyServerExecutor(int corePoolSize,
+    public NettyServerExecutor(String name, int corePoolSize,
                                int maximumPoolSize) {
         TaskQueue taskQueue = new TaskQueue();
         threadPoolExecutor = new ThreadPoolExecutor(
                 corePoolSize + 1, maximumPoolSize + 1, 60, TimeUnit.SECONDS,
-                taskQueue, new CustomThreadFactory("netty-listener"), new ThreadPoolExecutor.AbortPolicy());
+                taskQueue, new CustomThreadFactory(name + "-listener"), new ThreadPoolExecutor.AbortPolicy());
         taskQueue.setExecutor(threadPoolExecutor);
     }
 
