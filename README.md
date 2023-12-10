@@ -235,22 +235,21 @@ private NettyClientTemplate nettyClientTemplate2;
 
 
 // 构建HTTP请求
-        String requestBody = "message";
-        HttpRequest request = new DefaultFullHttpRequest(
-        HttpVersion.HTTP_1_1, HttpMethod.POST, "/",
-        Unpooled.copiedBuffer(requestBody, CharsetUtil.UTF_8));
+String requestBody = "message";
+HttpRequest request = new DefaultFullHttpRequest(
+HttpVersion.HTTP_1_1, HttpMethod.POST, "/",
+Unpooled.copiedBuffer(requestBody, CharsetUtil.UTF_8));
 
-        request.headers().set(HttpHeaderNames.HOST, "localhost");
-        request.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.CLOSE);
-        request.headers().set(HttpHeaderNames.CONTENT_LENGTH, ((DefaultFullHttpRequest) request).content().readableBytes());
-
-
-        FullHttpResponse o = nettyClientTemplate2.sendAndReceive(request);
-        return o.content().toString(CharsetUtil.UTF_8);
+request.headers().set(HttpHeaderNames.HOST, "localhost");
+request.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.CLOSE);
+request.headers().set(HttpHeaderNames.CONTENT_LENGTH, ((DefaultFullHttpRequest) request).content().readableBytes());
+// 发送请求
+FullHttpResponse o = nettyClientTemplate2.sendAndReceive(request);
+String response = o.content().toString(CharsetUtil.UTF_8);
 ```
 
 > 如果需要添加心跳功能，则需要添加自定义的心跳处理器，重写userEventTriggered方法，然后添加到配置文件中。
 
 ### 其他
-重写了线程池的execute方法，当核心线程数小于最大线程时，直接使用拿最大线程来执行，当最大线程数都满了才会放到阻塞队列。
+重写了线程池的execute方法，当核心线程数小于最大线程时，直接新增最大线程来执行，当最大线程数都满了才会放到阻塞队列。
 
