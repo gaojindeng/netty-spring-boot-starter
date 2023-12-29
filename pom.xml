@@ -7,7 +7,7 @@
     <groupId>io.github.gaojindeng</groupId>
     <artifactId>netty-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.2-RELEASE</version>
+    <version>0.0.3-RELEASE</version>
 
     <name>netty-parent</name>
     <description>Netty and Spring Boot integration framework ready to use out of the box.</description>

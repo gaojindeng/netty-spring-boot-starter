@@ -6,11 +6,11 @@
     <parent>
         <artifactId>netty-parent</artifactId>
         <groupId>io.github.gaojindeng</groupId>
-        <version>0.0.2-RELEASE</version>
+        <version>0.0.3-RELEASE</version>
     </parent>
 
     <artifactId>netty-spring-boot-starter</artifactId>
-    <version>0.0.2-RELEASE</version>
+    <version>0.0.3-RELEASE</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
