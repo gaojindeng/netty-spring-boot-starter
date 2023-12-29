@@ -11,7 +11,7 @@ netty-spring-boot-starter作为一个整合框架，充分利用了springBoot的
 <dependency>
   <groupId>io.github.gaojindeng</groupId>
   <artifactId>netty-spring-boot-starter</artifactId>
-  <version>0.0.2-RELEASE</version>
+  <version>0.0.3-RELEASE</version>
 </dependency>
 ```
 ##### 配置说明
